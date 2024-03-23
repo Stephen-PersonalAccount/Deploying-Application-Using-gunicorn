@@ -46,11 +46,8 @@ gravatar = Gravatar(app,
 class Base(DeclarativeBase):
     pass
 
-f = os.environ.get("FLASK_KEY")
-db_uri = os.environ.get("DB_URL")
-print(os.environ)#n DB_URI=sqlite:///blog.db
-print(db_uri)
-app.config['SQLALCHEMY_DATABASE_URI'] = db_uri
+
+app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get("DB_URI")
 db = SQLAlchemy(model_class=Base)
 db.init_app(app)
 
@@ -292,4 +289,4 @@ def contact():
 
 
 if __name__ == "__main__":
-    app.run(debug=True)
+    app.run(debug=False)
